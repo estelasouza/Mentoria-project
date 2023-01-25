@@ -47,4 +47,5 @@ public class UserServiceImpl implements UserService {
         updateUser.setPassword(user.getPassword() != null ? user.getPassword() : updateUser.getPassword());
         return userRepo.save(updateUser);
     }
+
 }
