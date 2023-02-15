@@ -48,13 +48,13 @@ public class MentorshipController {
         return mentorService.updatedMentor(id,updateMentor);
     }
 
-    @GetMapping("/mentor/name")
+    @GetMapping("/mentor")
     public List<Mentorship> getMentorByName(@RequestParam String name, Pageable page){
         return mentorService.readByName(name, page);
     }
 
 
-    @GetMapping("/mentor/date")
+    @GetMapping("/mentor")
     public  List<Mentorship> getAllMentorByDate(
             @RequestParam(required = false) Date startDate, @RequestParam(required = false) Date endDate, Pageable page
     ){

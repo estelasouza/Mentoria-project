@@ -1,5 +1,6 @@
 package dev.estela.mentoria.Producer;
 
+import dev.estela.mentoria.Model.UserModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +14,8 @@ public class TopicProduce {
     @Value("${topic.name.producer}")
     private String topicName;
 
-    private final KafkaTemplate<String,String> kafkaTemplate;
-    public void send( String message){
+    private final KafkaTemplate<Object, UserModel> kafkaTemplate;
+    public void send( UserModel message){
         log.info("message sent");
         kafkaTemplate.send(topicName,message);
     }
