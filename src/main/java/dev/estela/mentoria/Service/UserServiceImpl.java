@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepo;
 
     @Override
-    public User createUser(UserModel user) {
+    public User createUser(User user) {
         if(userRepo.existsByEmail(user.getEmail())){
             throw new ItemAlreadyExistsException("user is already registered with email:"+ user.getEmail());
         }

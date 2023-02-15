@@ -11,7 +11,7 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() throws Exception{
-        return (web) -> web.ignoring().requestMatchers("/login", "/register", "/mentor");
+        return (web) -> web.ignoring().requestMatchers("/login", "/register", "/kafka/send");
     }
 
 }

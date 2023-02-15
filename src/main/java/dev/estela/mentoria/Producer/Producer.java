@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/kafka")
@@ -21,8 +23,13 @@ public class Producer {
     @PostMapping(value = "/send")
     public  ResponseEntity<User> send(@Valid @RequestBody UserModel user)
     {
-        topicProduce.send(user);
+        System.out.println("aqui " +  user);
+        User newUser = new User();
+        newUser.setName(user.getName());
+        newUser.setPassword(user.getPassword());
+        newUser.setEmail(user.getEmail());
+        topicProduce.send(newUser);
 
-        return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<User>(userService.createUser(newUser), HttpStatus.CREATED);
     }
 }
